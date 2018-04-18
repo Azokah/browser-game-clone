@@ -52,8 +52,7 @@ class GameViewMessage(LoginRequiredMixin, ListView):
     success_url = "/game"
 
     def get_queryset(self):
-        self.form = Mensaje.objects.filter(receptor=Jugador.objects.filter(user=self.request.user.username))
-        return self.form
+        return Mensaje.objects.filter(receptor=Jugador.objects.filter(user=self.request.user.username)[0])
 
 
 class GameSendMessage(LoginRequiredMixin, CreateView):
