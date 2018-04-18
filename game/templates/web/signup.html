@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8"/>
+<head>
+    <title>Conquista del desierto - SignUp</title>
+</head>
+<body>
+    <div id="top">
+            <h2>Sign up</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ extra_form.as_p }}
+                <button type="submit">Sign up</button>
+            </form>
+    </div>
+</body>
+<html>

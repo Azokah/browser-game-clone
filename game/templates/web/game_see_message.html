@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8"/>
+<head>
+    <title>Conquista del desierto - Game</title>
+</head>
+<body>
+    <div id="top">
+            <p>Centro de envio de correos</p>
+    </div>
+    <div id="mid">
+                <h2>Correo</h2>
+                <p>De: {{mensaje.emisor}}</p>
+                <p>Para: {{mensaje.receptor}}</p>
+                <p>Titulo: {{mensaje.titulo}}</p>
+                <p>Mensaje: {{ mensaje.mensaje }}</p>
+            
+    </div>
+    <div id="bottom">
+            <a href="{% url 'main_game_message' %}">Volver</a>
+    </div>
+</body>
+<html>

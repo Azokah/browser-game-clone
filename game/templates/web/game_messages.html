@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8"/>
+<head>
+    <title>Conquista del desierto - Game</title>
+</head>
+<body>
+    <div id="top">
+            <p>Centro de envio de correos</p>
+    </div>
+    <div id="mid">
+                <h2>Correo</h2>
+                        {% for g in object_list  %}
+		                <p><a href="{% url 'main_game_see_message' pk=g.id %}">{{ g.titulo}}, from {{ g.emisor }}</a> --                <a href="{% url 'main_game_delete_message' pk=g.id %}">Borrar</a></p>
+	                {% endfor %}
+            <a href="{% url 'main_game_send_message' %}">Enviar mensaje</a>
+    </div>
+    <div id="bottom">
+            <a href="{% url 'main_game' %}">Volver</a>
+    </div>
+</body>
+<html>

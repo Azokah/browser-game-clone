@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8"/>
+<head>
+    <title>Conquista del desierto - Game</title>
+</head>
+<body>
+    <div id="top">
+            <p>Bienvenido General {{request.user.username}} - Headquarters</p>
+    </div>
+    <div id="mid">
+            <li>
+                <ul><p><a href="{% url 'main_game_message' %}">Mensajes</a></p></ul>
+                <ul><p>Campamento</p></ul>
+                <ul><p>Tropas</p></ul>
+                <ul><p>Mapa</p></ul>
+            </li>
+    </div>
+    <div id="bottom">
+            <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</body>
+<html>
