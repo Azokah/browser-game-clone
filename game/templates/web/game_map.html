@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8"/>
+<head>
+    <title>Conquista del desierto - Game</title>
+</head>
+<body>
+    <div id="top">
+            <p>Bienvenido General {{request.user.username}} - Mapa</p>
+    </div>
+    <div id="mid">
+            {% for g in object_list  %}   
+                <p>Mundo: {{ g.name }} - <a href="{% url 'main_game' %}">Volver</a></p>
+                <canvas id="canvasCeldaMapa" width="{{g.mapSize}}" height="{{g.mapSize}}"style="border:1px solid #000000;">
+                    Your browser does not support the canvas element.
+                </canvas>
+                {% for c in g.celdas.all %}
+                    <script>
+                        var canvas = document.getElementById("canvasCeldaMapa");
+                        var ctx = canvas.getContext("2d");
+                        ctx.fillStyle = "#0B6623";
+                        ctx.fillRect({{ c.x }}*100,{{ c.y }}*100,{{c.size}},{{c.size}});
+                    </script>
+                    {% if c.aldea %}
+                        <script>
+                            var canvas = document.getElementById("canvasCeldaMapa");
+                            var ctx = canvas.getContext("2d");
+                            ctx.fillStyle = "#FFFF33";
+                            ctx.fillRect(({{ c.x }}*100)+10,({{ c.y }}*100)+10,{{c.size}}-10,{{c.size}}-10);
+                        </script>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+    </div>
+    <div id="bottom">
+            
+    </div>
+</body>
+<html>

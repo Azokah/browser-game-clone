@@ -11,10 +11,12 @@ from django.forms import ModelForm
 ##Correos
 from django.shortcuts import get_object_or_404
 
-
-class IndexView(TemplateView):
-    model = Index
-    template_name = "web/index.html"
+##Index redirect
+def IndexView(request):
+    if request.user.is_authenticated:
+        return redirect('main_game')
+    else:
+        return redirect('login')
 
 #Game views
 ## Headquarters
@@ -23,6 +25,16 @@ class Game(LoginRequiredMixin, TemplateView):
     redirect_field_name = 'main_game'
     template_name = "web/game.html"
 
+## Mapa
+class GameMapView(LoginRequiredMixin, ListView):
+    model = Mapa
+    fields = "__all__"
+    login_url = '/login/'
+    redirect_field_name = 'main_game'
+    template_name = "web/game_map.html"
+
+    def get_queryset(self):
+        return Mapa.objects.filter(name="Patagonia")
 
 ## Centro de correos
 class GameSeeMessage(LoginRequiredMixin, DetailView):
@@ -101,3 +113,21 @@ def SignUp(request):
         form = UserCreationForm()
         extra_form = ExtendedForm()
     return render(request, 'web/signup.html', {'form': form,'extra_form': extra_form})
+
+
+##Debug Only
+### Para popular la db
+def Start(request):
+    Civilizacion.objects.create(nombre="Argentinos")
+    Civilizacion.objects.create(nombre="Indigenas")
+
+    map = Mapa(name="Patagonia",width=4,height=4,mapSize=16)
+    map.save()
+    for Y in range(0, 4):
+        for X in range(0, 4):
+            Celda.objects.create(ocupada=False,x=X,y=Y,mapa=map)
+    
+    map.celdas.all()
+    print("Todo se ha creado, celdas totales del mapa: " + map.celdas.count())
+    return redirect('login')
+
