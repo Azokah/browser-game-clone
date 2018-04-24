@@ -25,6 +25,17 @@ class Game(LoginRequiredMixin, TemplateView):
     redirect_field_name = 'main_game'
     template_name = "web/game.html"
 
+##Campamento
+class GameCampView(LoginRequiredMixin, ListView):
+    model = Aldea
+    fields = "__all__"
+    login_url = '/login/'
+    redirect_field_name = 'main_game'
+    template_name = "web/game_camp.html"
+
+    def get_queryset(self):
+        return Aldea.objects.filter(jugador=Jugador.objects.filter(user=self.request.user.username)[0])
+
 ## Mapa
 class GameMapView(LoginRequiredMixin, ListView):
     model = Mapa

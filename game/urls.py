@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^game/delete_message/(?P<pk>\d+)$', views.GameDeleteMessage.as_view(), name='main_game_delete_message'),
     url(r'^game/see_message/(?P<pk>\d+)$', views.GameSeeMessage.as_view(), name='main_game_see_message'),
 
+    ###Campamento
+    url(r'^game/camp/$', views.GameCampView.as_view(), name='main_game_camp'),
 
     ##Debug Only
     url(r'^start/$', views.Start, name='start'),

@@ -125,8 +125,6 @@ TEMPLATE_DIRS = (
     "game/templates",
 )
 
-STATICFILES_DIRS = ("game/templates/web",)
+STATICFILES_DIRS = ("game/templates/web","game/templates/images")
 
 LOGIN_REDIRECT_URL = "/game/"
-
-#AUTH_USER_MODEL = 'game.Jugador'

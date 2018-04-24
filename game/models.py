@@ -50,7 +50,9 @@ class Celda(models.Model):
     size = models.IntegerField(default=100)
     mapa = models.ForeignKey(Mapa, on_delete=models.CASCADE, related_name='celdas')
 
-
+class Edificio(models.Model):
+    nombre = models.CharField(max_length=50)
+    
 class Aldea(models.Model):
     nombre = models.CharField(max_length=50)
     poblation = models.IntegerField(default=10)
