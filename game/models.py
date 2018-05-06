@@ -50,15 +50,20 @@ class Celda(models.Model):
     size = models.IntegerField(default=100)
     mapa = models.ForeignKey(Mapa, on_delete=models.CASCADE, related_name='celdas')
 
-class Edificio(models.Model):
-    nombre = models.CharField(max_length=50)
-    
+
 class Aldea(models.Model):
     nombre = models.CharField(max_length=50)
     poblation = models.IntegerField(default=10)
     jugador = models.ForeignKey(Jugador, on_delete=models.CASCADE, default=None)
     posicion = models.OneToOneField(Celda, on_delete=models.CASCADE, default=None)
 
+    def __str__(self):
+        return self.nombre
+
+class Edificio(models.Model):
+    nombre = models.CharField(max_length=50)
+    aldea = models.ForeignKey(Aldea, on_delete=models.CASCADE, related_name='celdas')
 
     def __str__(self):
         return self.nombre
+    

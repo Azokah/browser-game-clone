@@ -23,6 +23,7 @@ urlpatterns = [
 
     ###Campamento
     url(r'^game/camp/$', views.GameCampView.as_view(), name='main_game_camp'),
+    url(r'^game/see_camp/(?P<pk>\d+)$', views.GameSeeCamp.as_view(), name='main_game_see_camp'),
 
     ##Debug Only
     url(r'^start/$', views.Start, name='start'),

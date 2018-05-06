@@ -11,20 +11,18 @@
     <title>Conquista del desierto - Game</title>
     </head>
     <body>
-    <div id="top">
-            <p>Centro de envio de correos</p>
-    </div>
-    <div id="mid">
-            <h2>Correo</h2>
-            <form method="post" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit "/>
-            </form>
-    </div>
-    <div id="bottom">
-            <a href="{% url 'main_game_message' %}">Volver</a>
-    </div>
+        <div id="top">
+                <p>Bienvenido General {{request.user.username}} - Headquarters</p>
+        </div>
+        <div id="mid">
+            <p>{{ aldea.nombre }} - Poblation: {{ aldea.poblation}}</p>
+
+            
+
+        </div>
+        <div id="bottom">
+                <a href="{% url 'main_game' %}">Go back</a>
+        </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -34,7 +34,18 @@ class GameCampView(LoginRequiredMixin, ListView):
     template_name = "web/game_camp.html"
 
     def get_queryset(self):
-        return Aldea.objects.filter(jugador=Jugador.objects.filter(user=self.request.user.username)[0])
+        self.aldea = Aldea.objects.filter(jugador=Jugador.objects.filter(user=self.request.user.username)[0])
+        return self.aldea
+
+class GameSeeCamp(LoginRequiredMixin, DetailView):
+    login_url = '/login/'
+    redirect_field_name = 'main_game'
+    template_name = "web/game_see_camp.html"
+    success_url = "/game"
+
+    def get_queryset(self):
+        self.aldea = Aldea.objects.filter(id=self.kwargs['pk'])
+        return self.aldea
 
 ## Mapa
 class GameMapView(LoginRequiredMixin, ListView):
